@@ -37,7 +37,7 @@ To do this you must be logged in with user credentials, which next will be used 
 
 For this user you need to generate ssh-deployments key and add it to git and deploy servers:
 ```ssh
-`Generate new ssh key for deploy user, I use jenkins.
+# generate new ssh key for deploy user, I use jenkins.
 su jenkins
 ssh-keygen -t rsa
 # copy public key to your deploy server
