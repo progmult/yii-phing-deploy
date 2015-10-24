@@ -42,8 +42,8 @@ su jenkins
 ssh-keygen -t rsa
 # copy public key to your deploy server
 cd ~/.ssh
-ssh-copy-id -id_rsa.pub deployuser@yourdeployserver.com
-# same way copy public key to your git server or copy-paste it content to your gitserver web interface
+ssh-copy-id -i id_rsa.pub deployuser@yourdeployserver.com
+# same way copy public key to your git server or copy-paste its content to your gitserver web interface
 cat id_rsa.pub
 ```
 
