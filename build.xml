@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="phingTest" default="deploy" basedir=".">
+        <property file="./build.properties" />
+
+        <target name="prepare">
+                <!--<delete dir="${tmp.dir}" />-->
+        </target>
+
+        <target name="getApp" depends="fetch-reset-repo">
+        </target>
+
+        <target name="override">
+                 <filesync sourcedir="${override.dir}" destinationdir="${tmp.dir}" />
+        </target>
+
+        <target name="deploy-by-rsync" depends="getApp,override">
+                <filesync
+                        sourcedir="${tmp.dir}"
+                        destinationdir="${ssh.user}@${ssh.host}:${deploy.dir}"
+                        excludeFile="${exclude.file}"
+                />
+        </target>
+
+        <target name="deploy" depends="deploy-by-rsync"/>
+
+        <target name="fetch-reset-repo">
+                <echo msg="Fetch data from repo..."/>
+                <gitfetch repository="${tmp.dir}" source="origin"/>
+                <echo msg="Reset all changes in working dir..."/>
+                <exec command="git reset --hard" dir="${tmp.dir}" passthru="true"/>
+                <gitpull repository="${tmp.dir}"/>
+                <exec command="git submodule update --init --recursive" dir="${tmp.dir}"/>
+        </target>
+
+        <target name="clone-repo">
+                <mkdir dir="${tmp.dir}" />
+                <gitclone repository="${repo}" targetPath="${tmp.dir}" />
+        </target>
+
+</project>
