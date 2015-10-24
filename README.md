@@ -3,7 +3,7 @@ This is my phing config to deploy yii-1.1.* apps
 
 It uses simple scenario:
 - export last revision from git repo to "export" temp directory;
-- rsync override "export" directory content with files from "override" dirictory (some config.php files or master view's with disabled debugging params);
+- rsync override "export" directory content with files from "override" directory (some config.php files or master view's with disabled debugging params);
 - rsync "export" directory to remote server.
 
 For export data from svn repository you may use simple `rm -R` and then `svn export` commands.
