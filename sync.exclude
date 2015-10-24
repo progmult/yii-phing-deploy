@@ -1,0 +1,7 @@
+*~
+index-test.php
+.git
+.svn
+protected/config/test.php
+pretected/test/*
+.gitignore
