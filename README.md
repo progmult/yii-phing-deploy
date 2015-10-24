@@ -37,6 +37,6 @@ ln -s /usr/local/bin/git /usr/bin/git
 ```
 
 ## Conclusion ##
-It maybe simpler to use ssh command for this: it's faster, cause you don't waste time for googling "How to do thing with Phing" and learn "XML"-programming. :) But you may use it in many yii projects, creating symlinks for this.
+It maybe simpler to use ssh command for this: it's faster, cause you don't waste time for googling "How to do thing with Phing" and learn "XML"-programming. :) But you may use one deploy config for many yii projects, just created symlinks to build.xml.
 
 I use this it my CI Jenkins installation as buld task for deploy staging project after unit tests successful on other job.
