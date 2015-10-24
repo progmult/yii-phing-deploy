@@ -14,7 +14,7 @@ deletes from export dir some fantom files, which sooner or later someone (like m
  - `git pull` pulls new changes from remote repository branch;
  - `git submodule update --init --recursive` load contens of all remote repos used in my app. I plan to use Composer for this, now at this poit I have little bugs with it (this is my fault of course), i.e. with composer in yii 1.1.16 extensions loaded not into "/protected/extenstions", but into "/vendor" dir, and not all yii-extenstions version I like works properly.
  
-I plan also incude to this yii-migrations in deploy process.
+I plan also incude yii-migrations in deploy process.
 
 ## Installation ##
 1. To use this file you must install Phing first (so you can call it from command line "`phing`");
