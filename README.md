@@ -28,12 +28,23 @@ pear install VersionControl_Git
 ```
 
 1. Extract this repo in your preferred dir, fill `build.properties` file;
-2. Clone your project into "export" dir (it's just one time);
+2. Clone your project into "export" dir (it's just one time) `git clone yoursshrepoaddress`;
 1. Execute `phing` command.
 
-On FreeBSD you may also need to create symlink on git executable, if git installed but phing doesn't see it:
-```shell
-ln -s /usr/local/bin/git /usr/bin/git
+If you run deploy at first time, you need to clone your repo in "export" dir (see p.2);
+`git clone yoursshrepoaddress`. h
+To do this you must be logged in with user credentials, which next will be used to call phing automatically.
+
+For this user you need to generate ssh-deployments key and add it to git and deploy servers:
+```ssh
+`Generate new ssh key for deploy user, I use jenkins.
+su jenkins
+ssh-keygen -t rsa
+# copy public key to your deploy server
+cd ~/.ssh
+ssh-copy-id -id_rsa.pub deployuser@yourdeployserver.com
+# same way copy public key to your git server or copy-paste it content to your gitserver web interface
+cat id_rsa.pub
 ```
 
 ## Conclusion ##
