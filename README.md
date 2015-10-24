@@ -27,7 +27,8 @@ pear install phing/phing
 pear install VersionControl_Git
 ```
 
-1. Clone this repo in your preferred git, fill `build.properties` file;
+1. Extract this repo in your preferred dir, fill `build.properties` file;
+2. Clone your project into "export" dir (it's just one time);
 1. Execute `phing` command.
 
 On FreeBSD you may also need to create symlink on git executable, if git installed but phing doesn't see it:
