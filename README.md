@@ -17,7 +17,7 @@ deletes from export dir some fantom files, which sooner or later someone (like m
 I plan also incude yii-migrations in deploy process.
 
 ## Installation ##
-1. To use this file you must install Phing first (so you can call it from command line "`phing`"). On FreeBSD run:
+To use this file you must install Phing first (so you can call it from command line "`phing`"). On FreeBSD run:
 
 ```shell
 pkg install pear
@@ -27,10 +27,15 @@ pear install phing/phing
 pear install VersionControl_Git
 ```
 
-2. Clone this repo in your preferred git, fill `build.properties` file;
-3. Execute `phing` command.
+1. Clone this repo in your preferred git, fill `build.properties` file;
+1. Execute `phing` command.
 
-On FreeBSD you may need to create symlink on git executable
+On FreeBSD you may also need to create symlink on git executable, if git installed but phing doesn't see it:
 ```shell
 ln -s /usr/local/bin/git /usr/bin/git
 ```
+
+## Conclusion ##
+It maybe simpler to use ssh command for this: it's faster, cause you don't waste time for googling "How to do thing with Phing" and learn "XML"-programming. :) But you may use it in many yii projects, creating symlinks for this.
+
+I use this it my CI Jenkins installation as buld task for deploy staging project after unit tests successful on other job.
