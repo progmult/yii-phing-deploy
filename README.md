@@ -32,7 +32,7 @@ pear install VersionControl_Git
 1. Execute `phing` command.
 
 If you run deploy at first time, you need to clone your repo in "export" dir (see p.2);
-`git clone yoursshrepoaddress`. h
+`git clone yoursshrepoaddress`.
 To do this you must be logged in with user credentials, which next will be used to call phing automatically.
 
 For this user you need to generate ssh-deployments key and add it to git and deploy servers:
