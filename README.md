@@ -17,7 +17,7 @@ deletes from export dir some fantom files, which sooner or later someone (like m
 I plan also incude yii-migrations in deploy process.
 
 ## Installation ##
-1. To use this file you must install Phing first (so you can call it from command line "`phing`");
+1. To use this file you must install Phing first (so you can call it from command line "`phing`"). On FreeBSD run:
 
 ```shell
 pkg install pear
