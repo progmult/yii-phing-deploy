@@ -6,8 +6,8 @@ It uses simple scenario:
 - override "export" directory content with files from "override" dirictory (some config.php files, or master view's with disabled debugging params);
 - rsync "export" directory to remote server.
 
-For export data from svn repository you may use simple "rm -R" and then "svn export" commands.
-For git I use some strange at first (and second, and so one) look combination of "`git fetch`", "`git reset --hard`", "`git pull`", and "`git submodule update --init --recursive`" commands.
+For export data from svn repository you may use simple `rm -R` and then `svn export` commands.
+For git I use some strange at first (and second, and so one) look combination of `git fetch`, `git reset --hard`, `git pull` and `git submodule update --init --recursive` commands.
 
  - `git fetch` and `git reset --hard` command combination restores full content of export dir with data of last deploy; it also 
 deletes from export dir some fantom files, which sooner or later someone (like me) can create in it and restore deleted files, so directory structure must be good. It's like local `svn export` command;
