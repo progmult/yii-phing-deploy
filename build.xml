@@ -6,18 +6,13 @@
                 <!--<delete dir="${tmp.dir}" />-->
         </target>
 
-        <target name="getApp" depends="fetch-reset-repo">
-        </target>
+        <target name="getApp" depends="fetch-reset-repo"></target>
 
         <target name="override">
                  <filesync sourcedir="${override.dir}" destinationdir="${tmp.dir}" />
         </target>
 
-        <target name="migrate">
-                <ssh privkeyfile="${ssh.privkeyfile}" pubkeyfile="${ssh.pubkeyfile}" username="${ssh.user}" host="${ssh.host}" command="cd ${deploy.dir}/protected;php yiic migrate up --interactive=0" failonerror="true"/>
-        </target>
-
-        <target name="deploy-by-rsync" depends="getApp,override">
+        <target name="rsync-to-remote">
                 <filesync
                         sourcedir="${tmp.dir}"
                         destinationdir="${ssh.user}@${ssh.host}:${deploy.dir}"
@@ -25,7 +20,18 @@
                 />
         </target>
 
-        <target name="deploy" depends="deploy-by-rsync,migrate" />
+        <target name="migrate">
+                <ssh
+                        privkeyfile="${ssh.privkeyfile}"
+                        pubkeyfile="${ssh.pubkeyfile}"
+                        username="${ssh.user}"
+                        host="${ssh.host}"
+                        command="cd ${deploy.dir}/protected;php yiic migrate up --interactive=0"
+                        failonerror="true"
+                />
+        </target>
+
+        <target name="deploy" depends="getApp,override,rsync-to-remote,migrate" />
 
         <target name="fetch-reset-repo">
                 <echo msg="Fetch data from repo..."/>
