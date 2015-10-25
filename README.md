@@ -1,5 +1,5 @@
 # yii-phing-deploy
-This is my phing config to deploy yii-1.1.* apps
+This is my first phing config to deploy yii-1.1.* apps.
 
 It uses simple scenario:
 - export last revision from git repo to "export" temp directory;
@@ -48,4 +48,6 @@ cat id_rsa.pub
 ## Conclusion ##
 It maybe simpler to use ssh command for this: it's faster, cause you don't waste time for googling "How to do thing with Phing" and learn "XML"-programming. :) But you may use one deploy config for many yii projects, just created symlinks to build.xml.
 
-I use this in my CI Jenkins installation as buld task for deploy staging project after unit tests successful on other job.
+I use this in my CI Jenkins installation to deploy apps on staging server.
+I put build.xml and onter files into "workspace" directory and then configure project to use Phing instead of Ant.
+runs after special project for for unit tests (and other build tasks) completes successful.
