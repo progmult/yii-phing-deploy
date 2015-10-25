@@ -48,6 +48,10 @@ cat id_rsa.pub
 ## Conclusion ##
 It maybe simpler to use ssh command for this: it's faster, cause you don't waste time for googling "How to do thing with Phing" and learn "XML"-programming. :) But you may use one deploy config for many yii projects, just created symlinks to build.xml.
 
-I use this in my CI Jenkins installation to deploy apps on staging server.
-I put build.xml and onter files into "workspace" directory and then configure project to use Phing instead of Ant.
-runs after special project for for unit tests (and other build tasks) completes successful.
+I use this in my CI Jenkins installation for deploy apps to staging server.
+
+I use this in my CI Jenkins installation for deploy apps to staging server.
+I created dedicated job and then configure it:
+ - to use Phing instead of default Ant.
+ - to build after other project (for unit tests and other build tasks) completes successful;
+and at last just put build.xml and other files into job "workspace" directory.
