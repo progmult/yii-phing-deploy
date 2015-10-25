@@ -13,6 +13,10 @@
                  <filesync sourcedir="${override.dir}" destinationdir="${tmp.dir}" />
         </target>
 
+        <target name="migrate">
+                <ssh privkeyfile="${ssh.privkeyfile}" pubkeyfile="${ssh.pubkeyfile}" username="${ssh.user}" host="${ssh.host}" command="cd ${deploy.dir}/protected;php yiic migrate up --interactive=0" failonerror="true"/>
+        </target>
+
         <target name="deploy-by-rsync" depends="getApp,override">
                 <filesync
                         sourcedir="${tmp.dir}"
@@ -21,7 +25,7 @@
                 />
         </target>
 
-        <target name="deploy" depends="deploy-by-rsync"/>
+        <target name="deploy" depends="deploy-by-rsync,migrate" />
 
         <target name="fetch-reset-repo">
                 <echo msg="Fetch data from repo..."/>
