@@ -51,4 +51,5 @@ It maybe simpler to use ssh command for this: it's faster, cause you don't waste
 I use this in my CI Jenkins installation for deploy apps to staging server, creating dedicated job and then configure it:
  - to use Phing instead of default Ant.
  - to build after other project (for unit tests and other build tasks) completes successful;
+
 and at last just put build.xml and other files into job "workspace" directory.
