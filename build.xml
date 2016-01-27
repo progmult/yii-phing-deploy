@@ -20,18 +20,18 @@
                 />
         </target>
 
-        <target name="migrate">
+        <target name="migrate_and_import">
                 <ssh
                         privkeyfile="${ssh.privkeyfile}"
                         pubkeyfile="${ssh.pubkeyfile}"
                         username="${ssh.user}"
                         host="${ssh.host}"
-                        command="cd ${deploy.dir}/protected;php yiic migrate up --interactive=0"
+                        command="cd ${deploy.dir}/protected;php yiic migrate up --interactive=0;rm -R runtime/cache/*;php yiic import"
                         failonerror="true"
                 />
         </target>
 
-        <target name="deploy" depends="getApp,override,rsync-to-remote,migrate" />
+        <target name="deploy" depends="getApp,override,rsync-to-remote,migrate_and_import" />
 
         <target name="fetch-reset-repo">
                 <echo msg="Fetch data from repo..."/>
