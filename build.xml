@@ -6,7 +6,7 @@
                 <!--<delete dir="${tmp.dir}" />-->
         </target>
 
-        <target name="getApp" depends="fetch-reset-repo"></target>
+        <target name="getApp" depends="svnexport"></target>
 
         <target name="override">
                  <filesync sourcedir="${override.dir}" destinationdir="${tmp.dir}" />
@@ -26,25 +26,27 @@
                         pubkeyfile="${ssh.pubkeyfile}"
                         username="${ssh.user}"
                         host="${ssh.host}"
-                        command="cd ${deploy.dir}/protected;php yiic migrate up --interactive=0;rm -R runtime/cache/*;php yiic import"
+                        command="cd ${deploy.dir}/protected;php yiic migrate up --interactive=0;rm -R runtime/cache/*"
                         failonerror="true"
                 />
         </target>
 
         <target name="deploy" depends="getApp,override,rsync-to-remote,migrate_and_import" />
 
-        <target name="fetch-reset-repo">
-                <echo msg="Fetch data from repo..."/>
-                <gitfetch repository="${tmp.dir}" source="origin"/>
-                <echo msg="Reset all changes in working dir..."/>
-                <exec command="git reset --hard" dir="${tmp.dir}" passthru="true"/>
-                <gitpull repository="${tmp.dir}"/>
-                <exec command="git submodule update --init --recursive" dir="${tmp.dir}"/>
-        </target>
-
-        <target name="clone-repo">
-                <mkdir dir="${tmp.dir}" />
-                <gitclone repository="${repo}" targetPath="${tmp.dir}" />
-        </target>
-
+		<target name="svnexport" depends="clean">
+				<echo msg="Export data from repo..."/>
+				<svnexport
+					repositoryurl="${svn.repo}"
+					todir="${tmp.dir}"
+					svnpath="${svn.path}"
+					username="${svn.username}"
+					password="${svn.password}"
+					nocache="true"
+				/>
+		</target>
+		
+		<target name="clean">
+				<echo msg="Deleteting export dir..."/>
+				<delete dir="${tmp.dir}"/>
+		</target>
 </project>
